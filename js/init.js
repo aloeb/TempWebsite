@@ -41,9 +41,13 @@
 	// block of JS events above and use the jQuery-based ones below instead.
 
 		$( document ).ready(function() {
-		    $('#contact').on('click', function() {
-					console.debug("Hello");
-					$('#form-main').toggleClass('after');
+		    $('#contact').click(function() {
+					/*$('#form-main').toggleClass('after');*/
+					$("#form-main").fadeTo('slow', 1);
+				});
+
+				$('#submit').click(function() {
+					$('#form-main').fadeTo('slow', 0);
 				});
 		});
 

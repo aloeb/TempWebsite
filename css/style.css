@@ -380,11 +380,30 @@
 
 				/* Contact Form */
 				#form-main {
+					display: block;
+					opacity:0.0;
+					border: 1px dotted blue;
+
+					margin:400px;
+				}
+
+				#form-main .after {
 					display: none;
 				}
 
-				#form-main.after {
-					display: block;
+				.button {
+					opacity: .8;
+					width:60px;
+					height:40px;
+					margin:5px;
+					border-radius:5px;
+					background-color:blue;
+				}
+
+				.button:hover {
+					opacity: 1;
+					width:50px;
+					height:30px;
 				}
 
 /* Footer */
