@@ -44,10 +44,17 @@
 		    $('#contact').click(function() {
 					/*$('#form-main').toggleClass('after');*/
 					$("#form-main").fadeTo('slow', 1);
+					$("#main").css('pointerEvents', 'none');
 				});
 
 				$('#submit').click(function() {
 					$('#form-main').fadeTo('slow', 0);
+					$("#main").css('pointerEvents', 'auto');
+				});
+
+				$('#cancel').click(function() {
+					$('#form-main').fadeTo('slow', 0);
+					$("#main").css('pointerEvents', 'auto');
 				});
 		});
 
