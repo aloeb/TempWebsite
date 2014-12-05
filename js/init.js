@@ -40,22 +40,109 @@
 	// Aerial doesn't need jQuery, but if you're going to use it anyway remove the
 	// block of JS events above and use the jQuery-based ones below instead.
 
+	var mouse = true;
+	var margin = '32.5%';
+	var size = 35;
+	var extra = 3;
+	var index = 0;
+	var length = 4;
+
+	//moves one project to the right (+1 to index)
+	function moveLeftProjects() {
+		if (index === length - 1)
+			return;
+		index += 1;
+		//move project on right to center
+		$('#proj-'+index.toString()).animate({ marginRight: margin, opacity: 1 }, 1000, function() {
+			$(this).css('float', 'left');
+			$(this).css('margin-left',(parseFloat(margin)-size).toString() + '%');
+			$(this).css('pointerEvents', 'auto');
+			$(this).css('margin-right',0);
+		});
+		//move center project to left
+		$('#proj-'+(index-1).toString()).css('pointerEvents', 'none');
+		if (index - 1 === 0) {
+			$('#proj-'+(index-1).toString()).animate({marginLeft: '0%', opacity: 0}, 1000);//change opacity
+		} else {
+			$('#proj-'+(index-1).toString()).animate({marginLeft: '-'+size.toString()+'%', opacity: 0}, 1000);//change opacity
+		}
+	}
+	//moves one project to the left (-1 to index)
+	function moveRightProjects() {
+		loc = (parseFloat(loc) - inc).toString() + "%";
+		$('#fir').animate({ marginTop: loc, opacity: 1 }, 1000);
+	}
+	//resets projects when project menu is left
+	function resetProjects() {
+		//reset all but first to right side
+		while (index > 0) {
+			$('#proj-'+index.toString()).css('opacity', 0);//change opacity
+			$('#proj-'+index.toString()).css('float', 'right');
+			$('#proj-'+index.toString()).css('margin-right', '0%');
+			$('#proj-'+index.toString()).css('pointerEvents', 'none');
+			$('#proj-'+index.toString()).css('margin-left', '-'+(size+extra).toString()+'%');
+			index -= 1;
+		}
+		$('#proj-1').css('margin-left', '-'+extra.toString()+'%');
+		//retset first to left
+		$('#proj-0').css('opacity', 1);
+		$('#proj-0').css('margin-left', margin);
+		$('#proj-0').css('margin-right', 0);
+		$('#proj-0').css('pointerEvents', 'auto');
+		$('#proj-0').css('float', 'left');
+	}
+
 		$( document ).ready(function() {
+			console.log($('proj-0').css('margin-right'));
+
 		    $('#contact').click(function() {
-					/*$('#form-main').toggleClass('after');*/
-					$("#form-main").fadeTo('slow', 1);
+					/*$("#form-main").fadeTo('slow', 1);*/
+					$("#overlayer").fadeTo('slow',1);
+					$("#overlay").css('z-index', 1);
 					$("#main").css('pointerEvents', 'none');
 				});
 
-				$('#submit').click(function() {
-					$('#form-main').fadeTo('slow', 0);
-					$("#main").css('pointerEvents', 'auto');
+				$('#overlayer').click(function() {/*replace overlay with submit to use contact form*/
+					/*$('#form-main').fadeTo('fast', 0);*/
+					if (mouse) {
+						$("#overlayer").fadeTo('fast', 0);
+						$('#about-box').animate({ marginTop: '15%', opacity: 1 }, 1000);
+						$("#overlay").css('z-index', 0);
+						$("#main").css('pointerEvents', 'auto');
+						resetProjects();
+					}
 				});
 
-				$('#cancel').click(function() {
-					$('#form-main').fadeTo('slow', 0);
-					$("#main").css('pointerEvents', 'auto');
+				$('#about-box').mouseenter(function() {
+					mouse = false;
 				});
+
+				$('#about-box').mouseleave(function() {
+					mouse = true;
+				});
+
+				$('.project-box').mouseenter(function() {
+					mouse = false;
+				});
+
+				$('.project-box').mouseleave(function() {
+					mouse = true;
+				});
+
+				$('#projects').click(function() {
+					$('#about-box').animate({ marginTop: '-24.7%', opacity: 0 }, 1000);
+					$('#proj-0').animate({opacity: 1},1000);
+				});
+
+				$('.next').click(function() {
+					moveLeftProjects();
+				});
+
+				/*$('#cancel').click(function() {
+					$('#form-main').fadeTo('fast', 0);
+					$("#overlay").css('z-index', 0);
+					$("#main").css('pointerEvents', 'auto');
+				});*/
 		});
 
 

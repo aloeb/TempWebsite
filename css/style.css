@@ -52,6 +52,14 @@
 		position: relative;
 	}
 
+	.icon:hover {
+		-webkit-animation:spin 1s infinite linear;
+		animation:spin 1s infinite linear
+	}
+
+	@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}25%{-webkit-transform:rotate(20deg);transform:rotate(20deg)}75%{-webkit-transform:rotate(-20deg);transform:rotate(-20deg)}100%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}}
+	@keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}25%{-webkit-transform:rotate(20deg);transform:rotate(20deg)}75%{-webkit-transform:rotate(-20deg);transform:rotate(-20deg)}100%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}}
+
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
@@ -89,7 +97,7 @@
 /* BG */
 
 	#bg {
-		-moz-animation: bg 60s linear infinite;
+		/*-moz-animation: bg 60s linear infinite;
 		-webkit-animation: bg 60s linear infinite;
 		-o-animation: bg 60s linear infinite;
 		-ms-animation: bg 60s linear infinite;
@@ -103,9 +111,9 @@
 		-webkit-transform: translate3d(0,0,0);
 		-o-transform: translate3d(0,0,0);
 		-ms-transform: translate3d(0,0,0);
-		transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);*/
 		/* Set your background with this */
-		background: #348cb2 url("images/bg.jpg") bottom left;
+		background: #3A9945 bottom left;/*348cb2 url("images/bg.png")*/
 		background-repeat: repeat-x;
 		height: 100%;
 		left: 0;
@@ -378,32 +386,93 @@
 					display: none;
 				}
 
-				/* Contact Form */
-				#form-main {
+				/* About stuff */
+
+				#overlayer {
+					background-color:rgba(58, 153, 69, 0.6);
 					display: block;
 					opacity:0.0;
-					border: 1px dotted blue;
+					width:100%;
+					height:100%;
 
-					margin:400px;
+					border: 1px solid rgba(58, 153, 69, 0.6);
 				}
 
-				#form-main .after {
-					display: none;
+				#overlayer h2 {
+					font-size: 3.5em;
+					font-weight: bold;
+					text-align: center;
+					margin: .25em .25em 0 0.25em;
+					opacity: 0.75;
+				}
+
+				#overlayer p {
+					font-size: 1.25em;
+					text-align: center;
+					opacity: 0.75;
+					margin: 0 .25em 0 .25em;
+				}
+
+				#overlayer .info {
+					margin: 1em .25em 1em 0.25em;
+				}
+
+				#about-box {
+					background-color:rgba(58, 153, 69, 0.95);
+					display: block;
+					width:35%;
+					height:47%;
+					/*border: 3px solid black;*/
+					border-radius: 3%;
+
+					margin: 15% 32.5% 0% 32.5%;
+					padding: 1%;
+				}
+
+				.project-box {
+					background-color:rgba(58, 153, 69, 0.95);
+					width:35%;
+					height:47%;
+					/*border: 3px solid black;*/
+					border-radius: 3%;
+
+					display: inline;
+					/*overflow: visible;
+
+					position: relative;*/
+					opacity: 0; /*change opacity*/
+					float: right;
+					margin-top: 15%;
+					margin-right: 0%;
+					margin-left: -38%;
+					pointer-events: none;
+					/*margin: 15% 0% 0% 32.5%;*/
+					padding: 1%;
+				}
+
+				#proj-0 {
+					float: left;
+					margin-left: 32.5%;
+					pointer-events: auto;
+				}
+
+				#proj-1 {
+					margin-left: -3%;
 				}
 
 				.button {
-					opacity: .8;
-					width:60px;
-					height:40px;
-					margin:5px;
-					border-radius:5px;
-					background-color:blue;
+					background-color:rgba(0,0,0,0);
+					opacity: .7;
+					border: 1px solid white;
+					border-radius: 5%;
+					padding: .5em 0 0 0;
+					margin: auto;
+					width: 35%;
+					height: 25%;
 				}
 
 				.button:hover {
-					opacity: 1;
-					width:50px;
-					height:30px;
+					transform: scale(1.05);
 				}
 
 /* Footer */
@@ -418,6 +487,7 @@
 		cursor: default;
 		height: 6em;
 		left: 0;
+		z-index:1;
 		line-height: 8em;
 		position: absolute;
 		text-align: center;
